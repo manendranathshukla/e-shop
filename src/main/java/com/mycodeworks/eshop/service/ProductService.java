@@ -26,6 +26,7 @@ public interface ProductService {
 			Integer pageNumer,Integer pageSize);
 
 
+	public List<Product> findAllProducts();
 
 
 }

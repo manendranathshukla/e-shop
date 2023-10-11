@@ -55,7 +55,7 @@ public class ProductServiceImplementation implements ProductService {
 		if(thirdLevel == null) {
 			Category thirdLevelCategory= new Category();
 			thirdLevelCategory.setName(req.getThirdLevelCategory());
-			thirdLevelCategory.setLevel(2);
+			thirdLevelCategory.setLevel(3);
 			thirdLevelCategory.setParentCategory(secondLevel);
 			thirdLevel=categoryRepo.save(thirdLevelCategory);
 		}
@@ -68,6 +68,7 @@ public class ProductServiceImplementation implements ProductService {
 		product.setDiscountedPercent(req.getDiscountPercent());
 		product.setImageUrl(req.getImageUrl());
 		product.setDiscountedPrice(req.getDiscountedPrice());
+		product.setPrice(req.getPrice());
 		product.setSizes(req.getSize());
 		product.setQuantity(req.getQuantity());
 		product.setCategory(thirdLevel);
@@ -141,6 +142,11 @@ public class ProductServiceImplementation implements ProductService {
 		Page<Product> filteredProducts= new PageImpl<>(pageContent,pageble,products.size());
 	
 		return filteredProducts;
+	}
+
+	@Override
+	public List<Product> findAllProducts() {
+		return productRepo.findAll();
 	}
 
 }
